@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Restaurant Ranking</title>
+<script src="jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+<header>
+    <div class="top">
+        <img src="img/food.jpeg" alt="食材写真">
+        <h1>My<br>Restaurant<br> Ranking</h1>
+    </div>
+</header>
+<main>
+
+<div>
+    <p>
+        
+    </p>
+</div>
+<!-- 店舗名 -->
+    <p class="storename">店舗名<br><input type="text" id="name"></p>
+
+<!-- カレンダーの挿入 -->
+<div class="calender">来店日<br><input type="date" id="day"></div>
+
+<!-- 場所の選択プルダウン -->
+    <div class="where">店舗所在地<br>
+    <select name="pref" id="pref">
+        <option value="">選択してください</option>
+        <option value="北海道">北海道</option>
+        <option value="青森県">青森県</option>
+        <option value="岩手県">岩手県</option>
+        <option value="宮城県">宮城県</option>
+        <option value="秋田県">秋田県</option>
+        <option value="山形県">山形県</option>
+        <option value="福島県">福島県</option>
+        <option value="茨城県">茨城県</option>
+        <option value="栃木県">栃木県</option>
+        <option value="群馬県">群馬県</option>
+        <option value="埼玉県">埼玉県</option>
+        <option value="千葉県">千葉県</option>
+        <option value="東京都" selected>東京都</option>
+        <option value="神奈川県">神奈川県</option>
+        <option value="新潟県">新潟県</option>
+        <option value="富山県">富山県</option>
+        <option value="石川県">石川県</option>
+        <option value="福井県">福井県</option>
+        <option value="山梨県">山梨県</option>
+        <option value="長野県">長野県</option>
+        <option value="岐阜県">岐阜県</option>
+        <option value="静岡県">静岡県</option>
+        <option value="愛知県">愛知県</option>
+        <option value="三重県">三重県</option>
+        <option value="滋賀県">滋賀県</option>
+        <option value="京都府">京都府</option>
+        <option value="大阪府">大阪府</option>
+        <option value="兵庫県">兵庫県</option>
+        <option value="奈良県">奈良県</option>
+        <option value="和歌山県">和歌山県</option>
+        <option value="鳥取県">鳥取県</option>
+        <option value="島根県">島根県</option>
+        <option value="岡山県">岡山県</option>
+        <option value="広島県">広島県</option>
+        <option value="山口県">山口県</option>
+        <option value="徳島県">徳島県</option>
+        <option value="香川県">香川県</option>
+        <option value="愛媛県">愛媛県</option>
+        <option value="高知県">高知県</option>
+        <option value="福岡県">福岡県</option>
+        <option value="佐賀県">佐賀県</option>
+        <option value="長崎県">長崎県</option>
+        <option value="熊本県">熊本県</option>
+        <option value="大分県">大分県</option>
+        <option value="宮崎県">宮崎県</option>
+        <option value="鹿児島県">鹿児島県</option>
+        <option value="沖縄県">沖縄県</option>
+        </select>
+    </div>
+
+    <!-- 点数の選択プルダウン -->
+    <div class="point">点数<br>
+    <select name=”score” id="score">
+        <option value=”100”>100</option>
+        <option value=”99”>99</option>
+        <option value=”98”>98</option>
+        <option value=”97”>97</option>
+        <option value=”96”>96</option>
+        <option value=”95”>95</option>
+        <option value=”94”>94</option>
+        <option value=”93”>93</option>
+        <option value=”92”>92</option>
+        <option value=”91”>91</option>
+        <option value=”90”>90</option>
+        <option value=”89”>89</option>
+        <option value=”88”>88</option>
+        <option value=”87”>87</option>
+        <option value=”86”>86</option>
+        <option value=”85”>85</option>
+        <option value=”84”>84</option>
+        <option value=”83”>83</option>
+        <option value=”82”>82</option>
+        <option value=”81”>81</option>
+        <option value=”80”>80</option>
+        <option value=”79”>79</option>
+        <option value=”78”>78</option>
+        <option value=”77”>77</option>
+        <option value=”76”>76</option>
+        <option value=”75”>75</option>
+        <option value=”74”>74</option>
+        <option value=”73”>73</option>
+        <option value=”72”>72</option>
+        <option value=”71”>71</option>
+        <option value=”70”>70</option>
+        <option value=”65”>65~</option>
+        <option value=”60”>60~</option>
+        <option value=”55”>55~</option>
+        <option value=”50”>50~</option>
+        <option value=”45”>45~</option>
+        <option value=”40”>40~</option>
+        <option value=”35”>35~</option>
+        <option value=”30”>30~</option>
+        <option value=”under30”>~30</option>
+    </select>
+</div>
+
+<!-- コメントエリア -->
+    <div class="comment">
+        <p class="impressions">コメント<br><textarea id="memo"></textarea></p>
+    </div>
+
+    <ul>
+        <li id="save">Save</li>
+        <li id="clear">Clear</li>
+    </ul>
+</main>
+<table id="list">
+<!-- ここに追加データが挿入される -->
+</table>
+<script>
+
+//1.Save クリックイベント
+
+$("#save").click(function(){
+// alert("saveがクリックされました")
+    let NameData = $("#name").val();
+    let DayData = $("#day").val();
+    let PrefData = $("#pref").val();
+    let ScoreData = $("#score").val();
+    let MemoData = $("#memo").val();
+ 
+    console.log(NameData);
+    console.log(DayData);
+    console.log(PrefData);
+    console.log(ScoreData);
+    console.log(MemoData);
+   
+    localStorage.setItem(NameData,DayData,PrefData,ScoreData,MemoData);
+
+    let html =
+        `<tr>
+            <th>${NameData}</th>
+            <td>${DayData}</td>
+            <td>${PrefData}</td>
+            <td>${ScoreData}</td>
+            <td>${MemoData}</td>
+
+        </tr>`;
+    console.log(html);
+    
+    $("#list").append(html);
+
+
+    $("#name").val("");
+    $("#day").val("");
+    $("#pref").val("");
+    $("#score").val("");
+    $("#memo").val("");
+
+});
+
+
+//2.clear クリックイベント
+$("#clear").click(function(){
+    localStorage.clear();
+
+    $("#list").empty();
+});
+
+
+//3.ページ読み込み：保存データ取得表示
+
+for (let i = 0; i < localStorage.length; i++) {
+            // localStorage からデータを取得するためにまずは key を先に取得する。
+            let key = localStorage.key(i);
+            let value = localStorage.getItem(key);
+            // ブラウザに表示します。
+            let html = `<tr>
+                    <th>${key}</th>
+                    <td>${value}</td>
+                </tr>`;
+            $("#list").append(html);
+        }
+
+</script>
+<footer>©︎ My Restaurant Ranking</footer>
+</body>
+</html>
